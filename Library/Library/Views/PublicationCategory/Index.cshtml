@@ -1,0 +1,36 @@
+﻿@model System.Data.DataTable
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <h1>Kategóriák</h1>
+    <form method="post">
+        <a href="@Url.Action("Create","PublicationCategory")"> Új Kategória</a>
+        <br /> <br />
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>CategoryID</th>
+                <th>Name</th>
+                <th colspan="2">Actions</th>
+            </tr>
+            @for (int i = 0; i < Model.Rows.Count; i++)
+            {
+            <tr>
+
+                <td>@Model.Rows[i][0] </td>
+                <td>@Model.Rows[i][1] </td>
+                <td>
+                    <a href="@Url.Action("Edit","PublicationCategory",new {@id=@Model.Rows[i][0]})">Edit</a>
+                    <a href="@Url.Action("Delete","PublicationCategory",new {@id=@Model.Rows[i][0]})">Delete</a>
+                </td>
+            </tr>
+
+            }
+        </table>
+    </form>
+</body>
+</html>
